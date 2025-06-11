@@ -1,17 +1,25 @@
-import "../styles/globals.css";
-import { ReactNode } from "react";
-import { Navbar } from "../components/Navbar";
-import { Providers } from "../components/Providers"; 
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import './globals.css';
+import { Providers } from './providers';
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+const inter = Inter({ subsets: ['latin'] });
+
+export const metadata: Metadata = {
+  title: 'Decentralized Social Media',
+  description: 'A decentralized social media platform built with Web3 technologies',
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
-      <body className="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-white">
-        <Providers> 
-          <Navbar />
-          <main className="max-w-4xl mx-auto px-4 py-6">{children}</main>
-        </Providers>
+      <body className={inter.className} suppressHydrationWarning>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
-}
+} 
